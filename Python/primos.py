@@ -2,8 +2,17 @@ from datetime import datetime
 now = datetime.now()
 # prime number calculator: find all primes up to n
 print("---cercatore di numeri primi---")
-print
-max = int(input("Fino a quale numero vuoi trovare i numeri primi?? : "))
+print("")
+opcion = input('vuoi inserire i dati? (s/n): ')
+
+if opcion == 's':
+		max = int(input("Fino a quale numero vuoi trovare i numeri primi?? : "))
+		count = int(input("Quanti numeri primi vuoi trovare?: "))
+else:
+		max = 100
+		count = 10
+
+
 
 primeList = []
 #for loop for checking each number
@@ -21,7 +30,7 @@ for x in range(2, max + 1):
 print(primeList)
 #-------------------------------------------------------------
 # prime number calculator: find the first n primes
-count = int(input("Quanti numeri primi vuoi trovare?: "))
+
 primeList = []
 x = 2
 while len(primeList) < count:
@@ -37,4 +46,5 @@ while len(primeList) < count:
 		primeList.append(x)
 	x += 1
 print(primeList)
-print("Current Time =", now)
+
+print("fecha y hora=", now)
