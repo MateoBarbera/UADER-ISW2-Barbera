@@ -1,4 +1,4 @@
-Ingenieria de software 2
-<h1>Barbera Mateo</h1>
+<h1>Ingenieria de software 2</h1>
+<h2>Barbera Mateo</h2>
 
-<h2>TP n°1</h2>
+<h3>TP n°1</h3>
