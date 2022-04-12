@@ -2,4 +2,5 @@
 <h2>Barbera Mateo</h2>
 
 <h2>TP n°1</h2>
-<h2>Profesores:</h2><li>Pedro Colla.</li> <li>Julián Escalante.</li> </ul>
+<h2>Profesores:</h2><h4><li>Pedro Colla.</li> <li>Julián Escalante.</li> </ul> </h4>
+[name=Julián Escalante]
