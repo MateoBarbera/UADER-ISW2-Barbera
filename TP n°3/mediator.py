@@ -4,9 +4,8 @@ from abc import ABC
 
 class Mediator(ABC):
     """
-    The Mediator interface declares a method used by components to notify the
-    mediator about various events. The Mediator may react to these events and
-    pass the execution to other components.
+    La interfaz Mediator declara un método utilizado por los componentes para notificar al mediador sobre varios eventos. El Mediador puede reaccionar a estos eventos y pasar la ejecución a otros componentes.
+
     """
 
     def notify(self, sender: object, event: str) -> None:
@@ -22,18 +21,18 @@ class ConcreteMediator(Mediator):
 
     def notify(self, sender: object, event: str) -> None:
         if event == "A":
-            print("Mediator reacts on A and triggers following operations:")
+            print("El mediador reacciona en A y desencadena las siguientes operaciones:")
             self._component2.do_c()
         elif event == "D":
-            print("Mediator reacts on D and triggers following operations:")
+            print("El mediador reacciona en D y desencadena las siguientes operaciones:")
             self._component1.do_b()
             self._component2.do_c()
 
 
 class BaseComponent:
     """
-    The Base Component provides the basic functionality of storing a mediator's
-    instance inside component objects.
+    El componente base proporciona la funcionalidad básica de almacenar la instancia de un mediador dentro de los objetos del componente.
+
     """
 
     def __init__(self, mediator: Mediator = None) -> None:
@@ -49,41 +48,42 @@ class BaseComponent:
 
 
 """
-Concrete Components implement various functionality. They don't depend on other
-components. They also don't depend on any concrete mediator classes.
+Los componentes concretos implementan varias funciones. No dependen de otros
+componentes Tampoco dependen de ninguna clase mediadora concreta.
+
 """
 
 
 class Component1(BaseComponent):
     def do_a(self) -> None:
-        print("Component 1 does A.")
+        print("El componente 1 hace A.")
         self.mediator.notify(self, "A")
 
     def do_b(self) -> None:
-        print("Component 1 does B.")
+        print("El componente 1 hace B.")
         self.mediator.notify(self, "B")
 
 
 class Component2(BaseComponent):
     def do_c(self) -> None:
-        print("Component 2 does C.")
+        print("El componente 2 hace C.")
         self.mediator.notify(self, "C")
 
     def do_d(self) -> None:
-        print("Component 2 does D.")
+        print("El componente 2 hace D.")
         self.mediator.notify(self, "D")
 
 
 if __name__ == "__main__":
-    # The client code.
+    # El código del cliente.
     c1 = Component1()
     c2 = Component2()
     mediator = ConcreteMediator(c1, c2)
 
-    print("Client triggers operation A.")
+    print("El cliente activa la operación A.")
     c1.do_a()
 
     print("\n", end="")
 
-    print("Client triggers operation D.")
+    print("El cliente activa la operación D.")
     c2.do_d()

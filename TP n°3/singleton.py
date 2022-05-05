@@ -5,17 +5,16 @@
 #*--------------------------------------------------
 class SingletonMeta(type):
     """
-    The Singleton class can be implemented in different ways in Python. Some
-    possible methods include: base class, decorator, metaclass. We will use the
-    metaclass because it is best suited for this purpose.
+    La clase Singleton se puede implementar de diferentes maneras en Python. Algunos métodos posibles incluyen: clase base, decorador, metaclase. Usaremos la metaclase porque es la más adecuada para este propósito.
+
     """
 
     _instances = {}
 
     def __call__(cls, *args, **kwargs):
         """
-        Possible changes to the value of the `__init__` argument do not affect
-        the returned instance.
+       Los posibles cambios en el valor del argumento `__init__` no afectan la instancia devuelta.
+
         """
         if cls not in cls._instances:
             instance = super().__call__(*args, **kwargs)
@@ -26,8 +25,8 @@ class SingletonMeta(type):
 class Singleton(metaclass=SingletonMeta):
     def some_business_logic(self):
         """
-        Finally, any singleton should define some business logic, which can be
-        executed on its instance.
+        Finalmente, cualquier singleton debe definir alguna lógica comercial, que se pueda ejecutar en su instancia.
+
         """
 
         # ...
@@ -41,9 +40,9 @@ if __name__ == "__main__":
     s2 = Singleton()
 
     if id(s1) == id(s2):
-        print("Singleton works, both variables contain the same instance.")
+        print("Singleton funciona, ambas variables contienen la misma instancia.")
         print(s1.getid())
     else:
-        print("Singleton failed, variables contain different instances.")
+        print("Singleton falló, las variables contienen diferentes instancias.")
 
 

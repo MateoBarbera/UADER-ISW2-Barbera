@@ -5,8 +5,8 @@
 
 class Component():
     """
-    The base Component interface defines operations that can be altered by
-    decorators.
+    La interfaz de componente base define operaciones que los decoradores pueden modificar.
+
     """
 
     def operation(self) -> str:
@@ -15,8 +15,8 @@ class Component():
 
 class ConcreteComponent(Component):
     """
-    Concrete Components provide default implementations of the operations. There
-    might be several variations of these classes.
+   Los componentes concretos proporcionan implementaciones predeterminadas de las operaciones. Puede haber varias variaciones de estas clases.
+
     """
 
     def operation(self) -> str:
@@ -25,11 +25,11 @@ class ConcreteComponent(Component):
 
 class Decorator(Component):
     """
-    The base Decorator class follows the same interface as the other components.
-    The primary purpose of this class is to define the wrapping interface for
-    all concrete decorators. The default implementation of the wrapping code
-    might include a field for storing a wrapped component and the means to
-    initialize it.
+    La clase Decorator base sigue la misma interfaz que los otros componentes.
+    El propósito principal de esta clase es definir la interfaz de envoltura para
+    todos los decoradores de hormigón. La implementación predeterminada del código de envoltura.
+    podría incluir un campo para almacenar un componente envuelto y los medios para
+    inicializarlo.
     """
 
     _component: Component = None
@@ -40,7 +40,8 @@ class Decorator(Component):
     @property
     def component(self) -> Component:
         """
-        The Decorator delegates all work to the wrapped component.
+        El decorador delega todo el trabajo al componente envuelto.
+
         """
 
         return self._component
@@ -51,23 +52,22 @@ class Decorator(Component):
 
 class ConcreteDecoratorA(Decorator):
     """
-    Concrete Decorators call the wrapped object and alter its result in some
-    way.
+    Los Decoradores de Concreto llaman al objeto envuelto y alteran su resultado de alguna manera.
+
     """
 
     def operation(self) -> str:
         """
-        Decorators may call parent implementation of the operation, instead of
-        calling the wrapped object directly. This approach simplifies extension
-        of decorator classes.
+        Los decoradores pueden llamar a la implementación principal de la operación, en lugar de llamar directamente al objeto envuelto. Este enfoque simplifica la extensión de las clases de decoradores.
+
         """
         return f"ConcreteDecoratorA({self.component.operation()})"
 
 
 class ConcreteDecoratorB(Decorator):
     """
-    Decorators can execute their behavior either before or after the call to a
-    wrapped object.
+    Los decoradores pueden ejecutar su comportamiento antes o después de la llamada a un objeto envuelto.
+
     """
 
     def operation(self) -> str:
@@ -76,9 +76,8 @@ class ConcreteDecoratorB(Decorator):
 
 def client_code(component: Component) -> None:
     """
-    The client code works with all objects using the Component interface. This
-    way it can stay independent of the concrete classes of components it works
-    with.
+    El código del cliente funciona con todos los objetos que utilizan la interfaz de componentes. De esta forma puede permanecer independiente de las clases concretas de componentes con los que trabaja.
+
     """
 
     # ...
@@ -89,16 +88,17 @@ def client_code(component: Component) -> None:
 
 
 if __name__ == "__main__":
-    # This way the client code can support both simple components...
+    # De esta manera, el código del cliente puede soportar ambos componentes simples...
+
     simple = ConcreteComponent()
     print("Client: I've got a simple component:")
     client_code(simple)
     print("\n")
 
-    # ...as well as decorated ones.
+   # ...así como los decorados.
     #
-    # Note how decorators can wrap not only simple components but the other
-    # decorators as well.
+    # Tenga en cuenta cómo los decoradores pueden envolver no solo componentes simples sino también el otro
+    # decoradores también.
     decorator1 = ConcreteDecoratorA(simple)
     decorator2 = ConcreteDecoratorB(decorator1)
     print("Client: Now I've got a decorated component:")

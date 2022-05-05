@@ -4,28 +4,28 @@ from typing import Any, List
 
 
 """
-To create an iterator in Python, there are two abstract classes from the built-
-in `collections` module - Iterable,Iterator. We need to implement the
-`__iter__()` method in the iterated object (collection), and the `__next__ ()`
-method in theiterator.
+Para crear un iterador en Python, hay dos clases abstractas del código integrado.
+en el módulo `colecciones` - Iterable, Iterator. Necesitamos implementar la
+método `__iter__()` en el objeto iterado (colección), y `__next__ ()`
+método en theiterator.
 """
 
 
 class AlphabeticalOrderIterator(Iterator):
     """
-    Concrete Iterators implement various traversal algorithms. These classes
-    store the current traversal position at all times.
+    Los iteradores concretos implementan varios algoritmos transversales. Estas clases almacenan la posición transversal actual en todo momento.
+
     """
 
     """
-    `_position` attribute stores the current traversal position. An iterator may
-    have a lot of other fields for storing iteration state, especially when it
-    is supposed to work with a particular kind of collection.
+    El atributo `_position` almacena la posición transversal actual. Un iterador puede tener muchos otros campos para almacenar el estado de la iteración, especialmente cuando se supone que debe trabajar con un tipo particular de colección.
+
     """
     _position: int = None
 
     """
-    This attribute indicates the traversal direction.
+    Este atributo indica la dirección transversal.
+
     """
     _reverse: bool = False
 
@@ -36,8 +36,8 @@ class AlphabeticalOrderIterator(Iterator):
 
     def __next__(self):
         """
-        The __next__() method must return the next item in the sequence. On
-        reaching the end, and in subsequent calls, it must raise StopIteration.
+       El método __next__() debe devolver el siguiente elemento de la secuencia. Al llegar al final, y en llamadas posteriores, debe levantar StopIteration.
+
         """
         try:
             value = self._collection[self._position]
@@ -50,8 +50,8 @@ class AlphabeticalOrderIterator(Iterator):
 
 class WordsCollection(Iterable):
     """
-    Concrete Collections provide one or several methods for retrieving fresh
-    iterator instances, compatible with the collection class.
+    Las colecciones concretas proporcionan uno o varios métodos para recuperar instancias de iterador nuevas, compatibles con la clase de colección.
+
     """
 
     def __init__(self, collection: List[Any] = []) -> None:
@@ -59,8 +59,8 @@ class WordsCollection(Iterable):
 
     def __iter__(self) -> AlphabeticalOrderIterator:
         """
-        The __iter__() method returns the iterator object itself, by default we
-        return the iterator in ascending order.
+        El método __iter__() devuelve el propio objeto iterador; de forma predeterminada, devolvemos el iterador en orden ascendente.
+
         """
         return AlphabeticalOrderIterator(self._collection)
 
@@ -72,17 +72,17 @@ class WordsCollection(Iterable):
 
 
 if __name__ == "__main__":
-    # The client code may or may not know about the Concrete Iterator or
-    # Collection classes, depending on the level of indirection you want to keep
-    # in your program.
+    # El código del cliente puede o no saber sobre el iterador concreto o
+    # Clases de colección, según el nivel de direccionamiento indirecto que desee mantener
+    # en su programa.
     collection = WordsCollection()
-    collection.add_item("First")
-    collection.add_item("Second")
-    collection.add_item("Third")
+    collection.add_item("Primero")
+    collection.add_item("Segundo")
+    collection.add_item("Tercero")
 
-    print("Straight traversal:")
+    print("Travesía recta:")
     print("\n".join(collection))
     print("")
 
-    print("Reverse traversal:")
+    print("Recorrido inverso:")
     print("\n".join(collection.get_reverse_iterator()), end="")
