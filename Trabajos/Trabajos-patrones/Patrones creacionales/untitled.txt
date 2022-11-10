@@ -1,0 +1,1 @@
+Un ejemplo donde se puede utilizar el patron abstrac factory es en la creacion de un determinado modelo de vehiculo , esta sea la clase mayor y para la creacion de un objeto haya diferente clases como ruedas,color,motor,asientos,vidrio,etc
